@@ -1,0 +1,91 @@
+components:
+  schemas:
+    violation_of_technology_in_number_of_cases:
+      description: Нарушение технологии в случаях
+      items:
+        properties:
+          SSC:
+            description: ССЦ
+            type: integer
+          SSC_last_year:
+            description: ССЦ
+            type: integer
+          UK:
+            description: УК
+            type: integer
+          UK_SSC_total:
+            description: Всего УК ССЦ
+            type: integer
+          UK_last_year:
+            description: УК
+            type: integer
+          br1:
+            description: бр1
+            type: integer
+          br2:
+            description: бр2
+            type: integer
+          br3:
+            description: бр3
+            type: integer
+          br4:
+            description: бр4
+            type: integer
+          br_total:
+            description: Всего
+            type: integer
+          name:
+            description: Нарушение в случаях
+            type: string
+        type: object
+      type: array
+info:
+  description: API ОТК
+  title: '12136'
+  version: 0.0.1
+openapi: 3.0.3
+paths:
+  /medium_grade_workshop/month/violation_of_technology_in_number_of_cases/:
+    get:
+      description: Нарушения технологии в тоннах
+      parameters:
+      - description: Начальная дата (в формате YYYY-MM-DD)
+        in: query
+        name: start_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      - description: Конечная дата (в формате YYYY-MM-DD)
+        in: query
+        name: end_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  properties:
+                    isTotal:
+                      nullable: true
+                      type: boolean
+                    values:
+                      items:
+                        type: string
+                      type: array
+                  type: object
+                type: array
+          description: Отправка данных
+      summary: ССЦ Отчёт за месяц
+      tags:
+      - data
+      - ccs
+      - month
+servers:
+- url: https://localhost

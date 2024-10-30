@@ -1,0 +1,86 @@
+get:
+  tags:
+    - data
+    - ccs
+    - month
+  summary: ССЦ Отчёт за месяц
+  description: Общие показатели производства
+  parameters:
+
+    - name: start_date
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+        example: "2024-08-31"
+      description: Начальная дата (в формате YYYY-MM-DD)
+
+    - name: end_date
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+        example: "2024-08-31"
+      description: Конечная дата (в формате YYYY-MM-DD)
+
+  responses:
+
+    '200':
+      description: Отправка данных
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                values:
+                  type: array
+                  items:
+                    type: string
+                isTotal:
+                  type: boolean
+                  nullable: true
+
+
+components:
+  schemas:
+    general_production_indicators:
+      type: array
+      description: Отчет по производству
+      items:
+        type: object
+        properties:
+
+          name:
+            type: string
+            description: Показатели
+
+          total:
+            type: number
+            format: float
+            example: 0.00
+            description: Всего т.
+
+          percentage_to_total:
+            type: number
+            format: float
+            description: "%"
+
+          total_for_period:
+            type: number
+            format: float
+            description: Всего т. с начала периода
+
+          percentage_to_total_for_period:
+            type: number
+            format: float
+            description: "%"
+
+          norm:
+            type: number
+            format: float
+            description: "Норматив %"
+

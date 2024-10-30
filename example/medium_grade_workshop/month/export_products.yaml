@@ -1,0 +1,80 @@
+get:
+  tags:
+    - data
+    - ccs
+    - month
+  summary: ССЦ Отчёт за месяц
+  description: Экспортная продукция
+  parameters:
+
+    - name: start_date
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+        example: "2024-08-31"
+      description: Начальная дата (в формате YYYY-MM-DD)
+
+    - name: end_date
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+        example: "2024-08-31"
+      description: Конечная дата (в формате YYYY-MM-DD)
+
+  responses:
+
+    '200':
+      description: Отправка данных
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                values:
+                  type: array
+                  items:
+                    type: string
+                isTotal:
+                  type: boolean
+                  nullable: true
+
+
+components:
+  schemas:
+    export_products:
+      type: array
+      description: Экспортная продукция
+      items:
+        type: object
+        properties:
+
+          name:
+            type: string
+            description: Период
+
+          production:
+            type: number
+            format: float
+            description: Производство, т
+
+          total:
+            type: number
+            format: float
+            description: т
+
+          percent:
+            type: number
+            format: float
+            description: "%"
+
+          shipped:
+            type: number
+            format: float
+            description: Отгружено, т
+

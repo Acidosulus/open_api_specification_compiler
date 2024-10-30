@@ -1,0 +1,84 @@
+components:
+  schemas:
+    defects_by_type_in_the_finished_grade:
+      description: Брак по видам в готовом сорте
+      items:
+        properties:
+          name:
+            description: Вид дефекта
+            example: Название
+            type: string
+          norm:
+            description: Норматив %
+            format: float
+            type: number
+          percent_to_total:
+            description: '%'
+            format: float
+            type: number
+          percent_to_total_for_period:
+            description: '%'
+            format: float
+            type: number
+          summary:
+            type: boolean
+          total:
+            description: Всего, т
+            format: float
+            type: number
+          total_for_period:
+            description: Всего, т. за период
+            format: float
+            type: number
+        type: object
+      type: array
+info:
+  description: API ОТК
+  title: '12136'
+  version: 0.0.1
+openapi: 3.0.3
+paths:
+  /medium_grade_workshop/month/defects_by_type_in_the_finished_grade/:
+    get:
+      description: Брак по видам в готовом сорте
+      parameters:
+      - description: Начальная дата (в формате YYYY-MM-DD)
+        in: query
+        name: start_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      - description: Конечная дата (в формате YYYY-MM-DD)
+        in: query
+        name: end_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  properties:
+                    isTotal:
+                      nullable: true
+                      type: boolean
+                    values:
+                      items:
+                        type: string
+                      type: array
+                  type: object
+                type: array
+          description: Отправка данных
+      summary: ССЦ Отчёт за месяц
+      tags:
+      - data
+      - ccs
+      - month
+servers:
+- url: https://localhost

@@ -1,0 +1,78 @@
+get:
+  tags:
+    - data
+    - ccs
+    - month
+  summary: ССЦ Отчёт за месяц
+  description: Действия с несоответствующей продукцией
+  parameters:
+
+    - name: start_date
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+        example: "2024-08-31"
+      description: Начальная дата (в формате YYYY-MM-DD)
+
+    - name: end_date
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+        example: "2024-08-31"
+      description: Конечная дата (в формате YYYY-MM-DD)
+
+  responses:
+
+    '200':
+      description: Отправка данных
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                values:
+                  type: array
+                  items:
+                    type: string
+                isTotal:
+                  type: boolean
+                  nullable: true
+
+
+components:
+  schemas:
+    actions_with_inappropriate_production:
+      type: array
+      description: Действия с несоответствующей продукцией
+      items:
+        type: object
+        properties:
+
+          name:
+            type: string
+            description: Градация
+
+          total:
+            type: number
+            format: float
+            description: Всего, т
+
+          received:
+            type: number
+            format: float
+            description: получено, т
+
+          grade:
+            type: string
+            description: ""
+
+          output:
+            type: number
+            format: float
+            description: "выход, %"

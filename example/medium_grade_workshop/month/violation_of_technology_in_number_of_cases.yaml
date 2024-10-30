@@ -1,0 +1,100 @@
+get:
+  tags:
+    - data
+    - ccs
+    - month
+  summary: ССЦ Отчёт за месяц
+  description: Нарушения технологии в тоннах
+  parameters:
+
+    - name: start_date
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+        example: "2024-08-31"
+      description: Начальная дата (в формате YYYY-MM-DD)
+
+    - name: end_date
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+        example: "2024-08-31"
+      description: Конечная дата (в формате YYYY-MM-DD)
+
+  responses:
+
+    '200':
+      description: Отправка данных
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                values:
+                  type: array
+                  items:
+                    type: string
+                isTotal:
+                  type: boolean
+                  nullable: true
+
+
+components:
+  schemas:
+
+    violation_of_technology_in_number_of_cases:
+      type: array
+      description: Нарушение технологии в случаях
+      items:
+        type: object
+        properties:
+
+          name:
+            type: string
+            description: Нарушение в случаях
+
+          br1:
+            type: integer
+            description: бр1
+
+          br2:
+            type: integer
+            description: бр2
+
+          br3:
+            type: integer
+            description: бр3
+
+          br4:
+            type: integer
+            description: бр4
+
+          br_total:
+            type: integer
+            description: Всего
+
+          UK:
+            type: integer
+            description: УК
+
+          SSC:
+            type: integer
+            description: ССЦ
+
+          UK_SSC_total:
+            type: integer
+            description: Всего УК ССЦ
+
+          UK_last_year:
+            type: integer
+            description: УК
+
+          SSC_last_year:
+            type: integer
+            description: ССЦ

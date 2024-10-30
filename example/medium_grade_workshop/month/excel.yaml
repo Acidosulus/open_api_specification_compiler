@@ -1,0 +1,29 @@
+get:
+  tags:
+    - excel
+  summary: ССЦ Отчёт за месяц - выгрузка в ексель
+  description: ССЦ Отчёт за месяц - выгрузка в ексель
+  parameters:
+
+    - name: start_date
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+        example: "2024-08-01"
+      description: Начальная дата (в формате YYYY-MM-DD)
+
+    - name: end_date
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+        example: "2024-08-31"
+      description: Конечная дата (в формате YYYY-MM-DD)
+
+  responses:
+
+    '200':
+      description: Отправка данных

@@ -1,0 +1,82 @@
+components:
+  schemas:
+    general_production_indicators:
+      description: Отчет по производству
+      items:
+        properties:
+          name:
+            description: Показатели
+            type: string
+          norm:
+            description: Норматив %
+            format: float
+            type: number
+          percentage_to_total:
+            description: '%'
+            format: float
+            type: number
+          percentage_to_total_for_period:
+            description: '%'
+            format: float
+            type: number
+          total:
+            description: Всего т.
+            example: 0.0
+            format: float
+            type: number
+          total_for_period:
+            description: Всего т. с начала периода
+            format: float
+            type: number
+        type: object
+      type: array
+info:
+  description: API ОТК
+  title: '12136'
+  version: 0.0.1
+openapi: 3.0.3
+paths:
+  /medium_grade_workshop/month/general_production_indicators/:
+    get:
+      description: Общие показатели производства
+      parameters:
+      - description: Начальная дата (в формате YYYY-MM-DD)
+        in: query
+        name: start_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      - description: Конечная дата (в формате YYYY-MM-DD)
+        in: query
+        name: end_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  properties:
+                    isTotal:
+                      nullable: true
+                      type: boolean
+                    values:
+                      items:
+                        type: string
+                      type: array
+                  type: object
+                type: array
+          description: Отправка данных
+      summary: ССЦ Отчёт за месяц
+      tags:
+      - data
+      - ccs
+      - month
+servers:
+- url: https://localhost

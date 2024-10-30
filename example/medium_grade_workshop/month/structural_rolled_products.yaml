@@ -1,0 +1,76 @@
+get:
+  tags:
+    - data
+    - ccs
+    - month
+  summary: ССЦ Отчёт за месяц
+  description: Конструкционный прокат
+  parameters:
+
+    - name: start_date
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+        example: "2024-08-31"
+      description: Начальная дата (в формате YYYY-MM-DD)
+
+    - name: end_date
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+        example: "2024-08-31"
+      description: Конечная дата (в формате YYYY-MM-DD)
+
+  responses:
+
+    '200':
+      description: Отправка данных
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                values:
+                  type: array
+                  items:
+                    type: string
+                isTotal:
+                  type: boolean
+                  nullable: true
+
+
+components:
+  schemas:
+
+    structural_rolled_products:
+      type: array
+      description: Конструкционный прокат
+      items:
+        type: object
+        properties:
+
+          name:
+            type: string
+            example: Название
+            description: Вид дефекта
+
+          accepted:
+            type: number
+            format: float
+            description: Принято, т
+
+          total:
+            type: number
+            format: float
+            description: Всего, т
+
+          percent:
+            type: number
+            format: float
+            description: "%"

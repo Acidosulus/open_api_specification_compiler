@@ -1,0 +1,86 @@
+get:
+  tags:
+    - data
+    - ccs
+    - month
+  summary: ССЦ Отчёт за месяц
+  description: Нарушение технологии в тоннах
+  parameters:
+
+    - name: start_date
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+        example: "2024-08-31"
+      description: Начальная дата (в формате YYYY-MM-DD)
+
+    - name: end_date
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+        example: "2024-08-31"
+      description: Конечная дата (в формате YYYY-MM-DD)
+
+  responses:
+
+    '200':
+      description: Отправка данных
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                values:
+                  type: array
+                  items:
+                    type: string
+                isTotal:
+                  type: boolean
+                  nullable: true
+
+
+components:
+  schemas:
+
+    violation_of_technology_in_tons:
+      type: array
+      description: Нарушение технологии в тоннах
+      items:
+        type: object
+        properties:
+
+          name:
+            type: string
+            description: Нарушение в случаях
+
+          total:
+            type: number
+            format: float
+            description: Всего, т
+
+          percent_to_total:
+            type: number
+            format: float
+            description: "%"
+
+          total_for_period:
+            type: number
+            format: float
+            description: Всего, т. за период
+
+          percent_to_total_for_period:
+            type: number
+            format: float
+            description: "%"
+
+          percent_for_last_year:
+            type: number
+            format: float
+            description: "% за прошлый год"
+

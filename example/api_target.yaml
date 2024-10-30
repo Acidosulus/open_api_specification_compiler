@@ -1,0 +1,812 @@
+components:
+  schemas:
+    actions_with_inappropriate_production:
+      description: Действия с несоответствующей продукцией
+      items:
+        properties:
+          grade:
+            description: ''
+            type: string
+          name:
+            description: Градация
+            type: string
+          output:
+            description: выход, %
+            format: float
+            type: number
+          received:
+            description: получено, т
+            format: float
+            type: number
+          total:
+            description: Всего, т
+            format: float
+            type: number
+        type: object
+      type: array
+    defects_by_type_in_the_finished_grade:
+      description: Брак по видам в готовом сорте
+      items:
+        properties:
+          name:
+            description: Вид дефекта
+            example: Название
+            type: string
+          norm:
+            description: Норматив %
+            format: float
+            type: number
+          percent_to_total:
+            description: '%'
+            format: float
+            type: number
+          percent_to_total_for_period:
+            description: '%'
+            format: float
+            type: number
+          summary:
+            type: boolean
+          total:
+            description: Всего, т
+            format: float
+            type: number
+          total_for_period:
+            description: Всего, т. за период
+            format: float
+            type: number
+        type: object
+      type: array
+    defects_in_the_finished_product_grade:
+      description: Отчет по производству
+      items:
+        properties:
+          name:
+            description: Название строки
+            type: string
+          norm:
+            description: Норматив %
+            format: float
+            type: number
+          percentage_to_total:
+            description: '%'
+            format: float
+            type: number
+          percentage_to_total_for_period:
+            description: '%'
+            format: float
+            type: number
+          total:
+            description: Всего т.
+            format: float
+            type: number
+          total_for_period:
+            description: Всего т. с начала периода
+            format: float
+            type: number
+        type: object
+      type: array
+    defects_in_the_profiles:
+      description: Брак по профилям
+      items:
+        properties:
+          name:
+            description: Название профиля
+            type: string
+          norm:
+            description: Норматив, %
+            format: float
+            type: number
+          percent:
+            description: '%'
+            format: float
+            type: number
+          percent_to_total_for_period:
+            description: '%'
+            format: float
+            type: number
+          summary:
+            type: boolean
+          total:
+            description: Всего, т
+            format: float
+            type: number
+          total_for_period:
+            description: Всего, т
+            format: float
+            type: number
+        type: object
+      type: array
+    export_products:
+      description: Экспортная продукция
+      items:
+        properties:
+          name:
+            description: Период
+            type: string
+          percent:
+            description: '%'
+            format: float
+            type: number
+          production:
+            description: Производство, т
+            format: float
+            type: number
+          shipped:
+            description: Отгружено, т
+            format: float
+            type: number
+          total:
+            description: т
+            format: float
+            type: number
+        type: object
+      type: array
+    general_production_indicators:
+      description: Отчет по производству
+      items:
+        properties:
+          name:
+            description: Показатели
+            type: string
+          norm:
+            description: Норматив %
+            format: float
+            type: number
+          percentage_to_total:
+            description: '%'
+            format: float
+            type: number
+          percentage_to_total_for_period:
+            description: '%'
+            format: float
+            type: number
+          total:
+            description: Всего т.
+            example: 0.0
+            format: float
+            type: number
+          total_for_period:
+            description: Всего т. с начала периода
+            format: float
+            type: number
+        type: object
+      type: array
+    measures:
+      description: Выход меры
+      items:
+        properties:
+          last_year:
+            description: Прошлый год, %
+            format: float
+            type: number
+          month:
+            description: Месяц, %
+            format: float
+            type: number
+          name:
+            description: Название профиля
+            type: string
+          summary:
+            type: boolean
+          year:
+            description: Год, %
+            format: float
+            type: number
+        type: object
+      type: array
+    structural_rolled_products:
+      description: Конструкционный прокат
+      items:
+        properties:
+          accepted:
+            description: Принято, т
+            format: float
+            type: number
+          name:
+            description: Вид дефекта
+            example: Название
+            type: string
+          percent:
+            description: '%'
+            format: float
+            type: number
+          total:
+            description: Всего, т
+            format: float
+            type: number
+        type: object
+      type: array
+    unfinished_rolling:
+      description: Отчет по производству
+      items:
+        properties:
+          name:
+            description: Название строки
+            type: string
+          norm:
+            description: Норматив %
+            format: float
+            type: number
+          percentage_to_total:
+            description: '%'
+            format: float
+            type: number
+          percentage_to_total_for_period:
+            description: '%'
+            format: float
+            type: number
+          total:
+            description: Всего т.
+            example: 0.0
+            format: float
+            type: number
+          total_for_period:
+            description: Всего т. с начала периода
+            format: float
+            type: number
+        type: object
+      type: array
+    violation_of_technology_in_number_of_cases:
+      description: Нарушение технологии в случаях
+      items:
+        properties:
+          SSC:
+            description: ССЦ
+            type: integer
+          SSC_last_year:
+            description: ССЦ
+            type: integer
+          UK:
+            description: УК
+            type: integer
+          UK_SSC_total:
+            description: Всего УК ССЦ
+            type: integer
+          UK_last_year:
+            description: УК
+            type: integer
+          br1:
+            description: бр1
+            type: integer
+          br2:
+            description: бр2
+            type: integer
+          br3:
+            description: бр3
+            type: integer
+          br4:
+            description: бр4
+            type: integer
+          br_total:
+            description: Всего
+            type: integer
+          name:
+            description: Нарушение в случаях
+            type: string
+        type: object
+      type: array
+    violation_of_technology_in_tons:
+      description: Нарушение технологии в тоннах
+      items:
+        properties:
+          name:
+            description: Нарушение в случаях
+            type: string
+          percent_for_last_year:
+            description: '% за прошлый год'
+            format: float
+            type: number
+          percent_to_total:
+            description: '%'
+            format: float
+            type: number
+          percent_to_total_for_period:
+            description: '%'
+            format: float
+            type: number
+          total:
+            description: Всего, т
+            format: float
+            type: number
+          total_for_period:
+            description: Всего, т. за период
+            format: float
+            type: number
+        type: object
+      type: array
+info:
+  description: API ОТК
+  title: '12136'
+  version: 0.0.1
+openapi: 3.0.3
+paths:
+  /medium_grade_workshop/month/actions_with_inappropriate_production/:
+    get:
+      description: Действия с несоответствующей продукцией
+      parameters:
+      - description: Начальная дата (в формате YYYY-MM-DD)
+        in: query
+        name: start_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      - description: Конечная дата (в формате YYYY-MM-DD)
+        in: query
+        name: end_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  properties:
+                    isTotal:
+                      nullable: true
+                      type: boolean
+                    values:
+                      items:
+                        type: string
+                      type: array
+                  type: object
+                type: array
+          description: Отправка данных
+      summary: ССЦ Отчёт за месяц
+      tags:
+      - data
+      - ccs
+      - month
+  /medium_grade_workshop/month/defects_by_type_in_the_finished_grade/:
+    get:
+      description: Брак по видам в готовом сорте
+      parameters:
+      - description: Начальная дата (в формате YYYY-MM-DD)
+        in: query
+        name: start_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      - description: Конечная дата (в формате YYYY-MM-DD)
+        in: query
+        name: end_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  properties:
+                    isTotal:
+                      nullable: true
+                      type: boolean
+                    values:
+                      items:
+                        type: string
+                      type: array
+                  type: object
+                type: array
+          description: Отправка данных
+      summary: ССЦ Отчёт за месяц
+      tags:
+      - data
+      - ccs
+      - month
+  /medium_grade_workshop/month/defects_in_the_finished_product_grade/:
+    get:
+      description: В готовом сорте
+      parameters:
+      - description: Начальная дата (в формате YYYY-MM-DD)
+        in: query
+        name: start_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      - description: Конечная дата (в формате YYYY-MM-DD)
+        in: query
+        name: end_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  properties:
+                    isTotal:
+                      nullable: true
+                      type: boolean
+                    values:
+                      items:
+                        type: string
+                      type: array
+                  type: object
+                type: array
+          description: Отправка данных
+      summary: ССЦ Отчёт за месяц
+      tags:
+      - data
+      - ccs
+      - month
+  /medium_grade_workshop/month/defects_in_the_profiles/:
+    get:
+      description: Брак по профилям
+      parameters:
+      - description: Начальная дата (в формате YYYY-MM-DD)
+        in: query
+        name: start_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      - description: Конечная дата (в формате YYYY-MM-DD)
+        in: query
+        name: end_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  properties:
+                    isTotal:
+                      nullable: true
+                      type: boolean
+                    values:
+                      items:
+                        type: string
+                      type: array
+                  type: object
+                type: array
+          description: Отправка данных
+      summary: ССЦ Отчёт за месяц
+      tags:
+      - data
+      - ccs
+      - month
+  /medium_grade_workshop/month/excel/:
+    get:
+      description: ССЦ Отчёт за месяц - выгрузка в ексель
+      parameters:
+      - description: Начальная дата (в формате YYYY-MM-DD)
+        in: query
+        name: start_date
+        required: true
+        schema:
+          example: '2024-08-01'
+          format: date
+          type: string
+      - description: Конечная дата (в формате YYYY-MM-DD)
+        in: query
+        name: end_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      responses:
+        '200':
+          description: Отправка данных
+      summary: ССЦ Отчёт за месяц - выгрузка в ексель
+      tags:
+      - excel
+  /medium_grade_workshop/month/export_products/:
+    get:
+      description: Экспортная продукция
+      parameters:
+      - description: Начальная дата (в формате YYYY-MM-DD)
+        in: query
+        name: start_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      - description: Конечная дата (в формате YYYY-MM-DD)
+        in: query
+        name: end_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  properties:
+                    isTotal:
+                      nullable: true
+                      type: boolean
+                    values:
+                      items:
+                        type: string
+                      type: array
+                  type: object
+                type: array
+          description: Отправка данных
+      summary: ССЦ Отчёт за месяц
+      tags:
+      - data
+      - ccs
+      - month
+  /medium_grade_workshop/month/general_production_indicators/:
+    get:
+      description: Общие показатели производства
+      parameters:
+      - description: Начальная дата (в формате YYYY-MM-DD)
+        in: query
+        name: start_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      - description: Конечная дата (в формате YYYY-MM-DD)
+        in: query
+        name: end_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  properties:
+                    isTotal:
+                      nullable: true
+                      type: boolean
+                    values:
+                      items:
+                        type: string
+                      type: array
+                  type: object
+                type: array
+          description: Отправка данных
+      summary: ССЦ Отчёт за месяц
+      tags:
+      - data
+      - ccs
+      - month
+  /medium_grade_workshop/month/measures/:
+    get:
+      description: Выход меры
+      parameters:
+      - description: Начальная дата (в формате YYYY-MM-DD)
+        in: query
+        name: start_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      - description: Конечная дата (в формате YYYY-MM-DD)
+        in: query
+        name: end_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  properties:
+                    isTotal:
+                      nullable: true
+                      type: boolean
+                    values:
+                      items:
+                        type: string
+                      type: array
+                  type: object
+                type: array
+          description: Отправка данных
+      summary: ССЦ Отчёт за месяц
+      tags:
+      - data
+      - ccs
+      - month
+  /medium_grade_workshop/month/structural_rolled_products/:
+    get:
+      description: Конструкционный прокат
+      parameters:
+      - description: Начальная дата (в формате YYYY-MM-DD)
+        in: query
+        name: start_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      - description: Конечная дата (в формате YYYY-MM-DD)
+        in: query
+        name: end_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  properties:
+                    isTotal:
+                      nullable: true
+                      type: boolean
+                    values:
+                      items:
+                        type: string
+                      type: array
+                  type: object
+                type: array
+          description: Отправка данных
+      summary: ССЦ Отчёт за месяц
+      tags:
+      - data
+      - ccs
+      - month
+  /medium_grade_workshop/month/unfinished_rolling/:
+    get:
+      description: Недокаты
+      parameters:
+      - description: Начальная дата (в формате YYYY-MM-DD)
+        in: query
+        name: start_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      - description: Конечная дата (в формате YYYY-MM-DD)
+        in: query
+        name: end_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  properties:
+                    isTotal:
+                      nullable: true
+                      type: boolean
+                    values:
+                      items:
+                        type: string
+                      type: array
+                  type: object
+                type: array
+          description: Отправка данных
+      summary: ССЦ Отчёт за месяц
+      tags:
+      - data
+      - ccs
+      - month
+  /medium_grade_workshop/month/violation_of_technology_in_number_of_cases/:
+    get:
+      description: Нарушения технологии в тоннах
+      parameters:
+      - description: Начальная дата (в формате YYYY-MM-DD)
+        in: query
+        name: start_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      - description: Конечная дата (в формате YYYY-MM-DD)
+        in: query
+        name: end_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  properties:
+                    isTotal:
+                      nullable: true
+                      type: boolean
+                    values:
+                      items:
+                        type: string
+                      type: array
+                  type: object
+                type: array
+          description: Отправка данных
+      summary: ССЦ Отчёт за месяц
+      tags:
+      - data
+      - ccs
+      - month
+  /medium_grade_workshop/month/violation_of_technology_in_tons/:
+    get:
+      description: Нарушение технологии в тоннах
+      parameters:
+      - description: Начальная дата (в формате YYYY-MM-DD)
+        in: query
+        name: start_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      - description: Конечная дата (в формате YYYY-MM-DD)
+        in: query
+        name: end_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  properties:
+                    isTotal:
+                      nullable: true
+                      type: boolean
+                    values:
+                      items:
+                        type: string
+                      type: array
+                  type: object
+                type: array
+          description: Отправка данных
+      summary: ССЦ Отчёт за месяц
+      tags:
+      - data
+      - ccs
+      - month
+servers:
+- url: https://localhost

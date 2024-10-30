@@ -1,0 +1,82 @@
+get:
+  tags:
+    - data
+    - ccs
+    - month
+  summary: ССЦ Отчёт за месяц
+  description: Выход меры
+  parameters:
+
+    - name: start_date
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+        example: "2024-08-31"
+      description: Начальная дата (в формате YYYY-MM-DD)
+
+    - name: end_date
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+        example: "2024-08-31"
+      description: Конечная дата (в формате YYYY-MM-DD)
+
+  responses:
+
+    '200':
+      description: Отправка данных
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                values:
+                  type: array
+                  items:
+                    type: string
+                isTotal:
+                  type: boolean
+                  nullable: true
+
+
+components:
+  schemas:
+
+    measures:
+      type: array
+      description: Выход меры
+      items:
+        type: object
+        properties:
+
+          name:
+            type: string
+            description: Название профиля
+
+          month:
+            type: number
+            format: float
+            description: "Месяц, %"
+
+          year:
+            type: number
+            format: float
+            description: "Год, %"
+
+          last_year:
+            type: number
+            format: float
+            description: "Прошлый год, %"
+
+          summary:
+            type: boolean
+
+
+
+

@@ -1,0 +1,75 @@
+components:
+  schemas:
+    measures:
+      description: Выход меры
+      items:
+        properties:
+          last_year:
+            description: Прошлый год, %
+            format: float
+            type: number
+          month:
+            description: Месяц, %
+            format: float
+            type: number
+          name:
+            description: Название профиля
+            type: string
+          summary:
+            type: boolean
+          year:
+            description: Год, %
+            format: float
+            type: number
+        type: object
+      type: array
+info:
+  description: API ОТК
+  title: '12136'
+  version: 0.0.1
+openapi: 3.0.3
+paths:
+  /medium_grade_workshop/month/measures/:
+    get:
+      description: Выход меры
+      parameters:
+      - description: Начальная дата (в формате YYYY-MM-DD)
+        in: query
+        name: start_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      - description: Конечная дата (в формате YYYY-MM-DD)
+        in: query
+        name: end_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  properties:
+                    isTotal:
+                      nullable: true
+                      type: boolean
+                    values:
+                      items:
+                        type: string
+                      type: array
+                  type: object
+                type: array
+          description: Отправка данных
+      summary: ССЦ Отчёт за месяц
+      tags:
+      - data
+      - ccs
+      - month
+servers:
+- url: https://localhost

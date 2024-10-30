@@ -1,0 +1,74 @@
+components:
+  schemas:
+    structural_rolled_products:
+      description: Конструкционный прокат
+      items:
+        properties:
+          accepted:
+            description: Принято, т
+            format: float
+            type: number
+          name:
+            description: Вид дефекта
+            example: Название
+            type: string
+          percent:
+            description: '%'
+            format: float
+            type: number
+          total:
+            description: Всего, т
+            format: float
+            type: number
+        type: object
+      type: array
+info:
+  description: API ОТК
+  title: '12136'
+  version: 0.0.1
+openapi: 3.0.3
+paths:
+  /medium_grade_workshop/month/structural_rolled_products/:
+    get:
+      description: Конструкционный прокат
+      parameters:
+      - description: Начальная дата (в формате YYYY-MM-DD)
+        in: query
+        name: start_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      - description: Конечная дата (в формате YYYY-MM-DD)
+        in: query
+        name: end_date
+        required: true
+        schema:
+          example: '2024-08-31'
+          format: date
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  properties:
+                    isTotal:
+                      nullable: true
+                      type: boolean
+                    values:
+                      items:
+                        type: string
+                      type: array
+                  type: object
+                type: array
+          description: Отправка данных
+      summary: ССЦ Отчёт за месяц
+      tags:
+      - data
+      - ccs
+      - month
+servers:
+- url: https://localhost
